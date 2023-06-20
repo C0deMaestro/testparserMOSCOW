@@ -29,12 +29,14 @@ water_btn.click()
 pages = driver.find_elements(By.CSS_SELECTOR,"ul.catalog-paginate a")
 links = [element.get_attribute("href") for element in pages]
 
+#цикл по страницам
 for link in links:
     driver.get(link)
     driver.implicitly_wait(5)
     table_products = driver.find_element(By.ID,'products-inner')
     products = table_products.find_elements(By.CSS_SELECTOR,'.catalog-2-level-product-card')
 
+    #цикл по плиткам с водой
     for product in products:
         # Доступ к информации о товаре
         id = product.get_attribute('data-sku')
@@ -58,10 +60,10 @@ for link in links:
             except:
                 old_price_penny = 0
             old_price = float(old_price_rub)+float(old_price_penny)
-            print(1111)
+
         except NoSuchElementException:
             old_price = actual_price
-            print(22222)
+
 
 
         # Вывод информации о товаре

@@ -31,7 +31,7 @@ links = [element.get_attribute("href") for element in pages]
 
 for link in links:
     driver.get(link)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     table_products = driver.find_element(By.ID,'products-inner')
     products = table_products.find_elements(By.CSS_SELECTOR,'.catalog-2-level-product-card')
 
